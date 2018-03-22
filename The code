@@ -1,0 +1,18 @@
+#https://www.scrapehero.com/how-to-scrape-tripadvisor-com-hotel-details-using-python-and-lxml/
+from lxml import html
+import requests
+from collections import OrderdDict
+import json
+import argparse
+import re
+
+def parse(url):
+      print ("Fething %s"%url)
+      response = requests.get(url)
+      parser = html.fromstring(response.text)
+      
+      XPATH_RATING = '//div[@data-name="ta_rating"]'
+      XPATH_RATING = '//h1[@id="HEADING"]//TEXT()'
+      XPATH_HOTEL_RATING = '//span[@property="ratingValue"]//@content'
+      XPATH_REVIEWS = '//a[contains(@class,"Reviews")]//text()'
+      
